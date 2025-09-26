@@ -52,29 +52,48 @@ def survival_demographics():
 
 # Section 7
 def visualize_demographic():
+     '''
+    Function to produce a visualization
+    to answer my app.py question.
+
+    Parameters:
+    No input parameters.
+
+    Return value:
+    A bar plot of average survival rate
+    by age group and sex.
+    '''
+    # Recall the bins since everything
+    # is left in the previous function
     age_bins = [0, 12, 19, 59, 110]
+
+    # Recall the age_labels
     age_labels = ['Child', 'Teen', 'Adult', 'Senior']
 
-    df_titanic['age_category'] = pd.cut(df_titanic['Age'], 
+    # Recall the age_group column
+    df_titanic['age_group'] = pd.cut(df_titanic['Age'], 
                                         bins = age_bins, 
                                         labels = age_labels,
                                         include_lowest = True)
     
-    df_grouped = df_titanic.groupby(['age_category', 'Sex']).agg(
+    # Group, aggregate and find average survival rate
+    df_grouped = df_titanic.groupby(['age_group', 'Sex']).agg(
         avg_survival_rate = ('Survived', 'mean')
     ).reset_index()
 
+    # Create a new percentage column
     df_grouped['avg_survival_rate_pct'] = df_grouped['avg_survival_rate'] * 100
 
+    # Create the bar plot
     fig = px.bar(df_grouped, 
-                 x = "age_category", 
+                 x = "age_group", 
                  y = "avg_survival_rate_pct", 
                  color = "Sex", 
                  barmode="group",
-                 labels = {'age_category':'Age Category',
+                 labels = {'age_group':'Age Group',
                            'avg_survival_rate_pct':'Average Survival Rate (%)'
                            },
-                           title = "Average Survival Rate by Age Category and Sex",
+                           title = "Average Survival Rate by Age Group and Sex",
                            color_discrete_sequence = ["#4b99d0", '#ff7f0e']
                            )
     return fig
