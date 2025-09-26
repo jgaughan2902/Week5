@@ -103,7 +103,7 @@ def visualize_demographic():
 # Section 1-3
 def family_groups():
      '''
-    Function to explor the relationship
+    Function to explore the relationship
     between family size, passenger class,
     and ticket fare.
 
@@ -151,6 +151,18 @@ def last_names():
 
 # Section 5
 def visualize_families():
+     '''
+    Function to produce a visualization
+    to answer my other app.py question.
+
+    Parameters:
+    No input parameters.
+
+    Return value:
+    A histogram of average fare by age
+    for each sex.
+    '''
+    # Create the histogram
     fig = px.histogram(df_titanic, 
                        x = 'Age', 
                        y = 'Fare', 
