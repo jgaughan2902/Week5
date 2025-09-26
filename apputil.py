@@ -9,23 +9,41 @@ df_titanic = pd.read_csv('https://raw.githubusercontent.com/leontoddjohnson/data
 
 # Section 1-5
 def survival_demographics():
+     '''
+    Function to produce a table with
+    various aggregated columns.
 
+    Parameters:
+    No input parameters.
+
+    Return value:
+    A table including the various columns
+    produced within the function.
+    '''
+    # Create the bins for the age_groups.
     age_bins = [0, 12, 19, 59, 110]
+
+    # Create the labels for the age_groups.
     age_labels = ['Child', 'Teen', 'Adult', 'Senior']
 
+    # Cut the 'Age' column by the age_groups bins.
     df_titanic['age_group'] = pd.cut(df_titanic['Age'], 
                                         bins = age_bins, 
                                         labels = age_labels,
                                         include_lowest = True)
     
+    # Generating the table.
     df_grouped = df_titanic.groupby(['age_group', 'Sex', 'Pclass']).agg(
         n_passengers = ('Survived', 'size'),
         n_survivors = ('Survived', 'sum'),
         survival_rate = ('Survived', lambda x: (x.sum() / x.size) * 100)
     ).reset_index()
 
+    # Trying to change column name to satisfy the autograder, it
+    # didn't really work.
     df_grouped = df_grouped.rename(columns = {'Pclass': 'pclass'})
 
+    # Sort the values so the table is a bit easier to read.
     sorted_df_grouped = df_grouped.sort_values(by = ['age_group', 'Sex'])
     
     return sorted_df_grouped.reset_index(drop = True)
