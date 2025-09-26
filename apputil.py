@@ -102,8 +102,22 @@ def visualize_demographic():
 
 # Section 1-3
 def family_groups():
+     '''
+    Function to explor the relationship
+    between family size, passenger class,
+    and ticket fare.
+
+    Parameters:
+    No input parameters.
+
+    Return value:
+    A sorted table of various aggregated
+    and grouped columns.
+    '''
+    # Create the family size column
     df_titanic['family_size'] = df_titanic['SibSp'] + df_titanic['Parch'] + 1
 
+    # Create the grouped data set with fare information
     df_grouped = df_titanic.groupby(['family_size', 'Pclass']).agg(
         n_passengers = ('Survived', 'size'),
         avg_fare = ('Fare', lambda x: (x.sum() / x.size)),
@@ -111,6 +125,7 @@ def family_groups():
         max_fare = ('Fare', 'max')
     ).reset_index()
 
+    # Sort the output table by Pclass and family_size
     sorted_df_grouped = df_grouped.sort_values(by = ['Pclass', 'family_size'])
     
     return df_grouped
