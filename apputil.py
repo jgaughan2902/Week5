@@ -24,7 +24,7 @@ def survival_demographics():
         survival_rate = ('Survived', lambda x: (x.sum() / x.size) * 100)
     ).reset_index()
 
-    df_grouped = df_grouped.rename(columns = {'Pclass': 'pclass'})
+    df_grouped = df_grouped.rename(columns = {'Pclass': 'pclass', 'Sex':'sex'})
 
     sorted_df_grouped = df_grouped.sort_values(by = ['age_group', 'Sex'])
     
