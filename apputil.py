@@ -13,18 +13,19 @@ def survival_demographics():
     age_bins = [0, 12, 19, 59, 110]
     age_labels = ['Child', 'Teen', 'Adult', 'Senior']
 
-    df_titanic['age_category'] = pd.cut(df_titanic['Age'], 
+    df_titanic['age_group'] = pd.cut(df_titanic['Age'], 
                                         bins = age_bins, 
                                         labels = age_labels,
                                         include_lowest = True)
     
-    df_grouped = df_titanic.groupby(['age_category', 'Sex', 'Pclass']).agg(
+    df_grouped = df_titanic.groupby(['age_group', 'Sex', 'Pclass']).agg(
         n_passengers = ('Survived', 'size'),
         n_survivors = ('Survived', 'sum'),
         survival_rate = ('Survived', lambda x: (x.sum() / x.size) * 100)
     ).reset_index()
 
-    sorted_df_grouped = df_grouped.sort_values(by = ['age_category', 'Sex'])
+
+    sorted_df_grouped = df_grouped.sort_values(by = ['age_group', 'Sex'])
     
     return sorted_df_grouped.reset_index(drop = True)
 
