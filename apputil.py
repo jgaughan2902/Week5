@@ -9,7 +9,7 @@ df_titanic = pd.read_csv('https://raw.githubusercontent.com/leontoddjohnson/data
 
 # Section 1-5
 def survival_demographics():
-     '''
+    '''
     Function to produce a table with
     various aggregated columns.
 
@@ -52,7 +52,7 @@ def survival_demographics():
 
 # Section 7
 def visualize_demographic():
-     '''
+    '''
     Function to produce a visualization
     to answer my app.py question.
 
@@ -102,7 +102,7 @@ def visualize_demographic():
 
 # Section 1-3
 def family_groups():
-     '''
+    '''
     Function to explore the relationship
     between family size, passenger class,
     and ticket fare.
@@ -132,7 +132,7 @@ def family_groups():
 
 # Section 4
 def last_names():
-     '''
+    '''
     Function to extract the last
     names of each passenger.
 
@@ -151,7 +151,7 @@ def last_names():
 
 # Section 5
 def visualize_families():
-     '''
+    '''
     Function to produce a visualization
     to answer my other app.py question.
 
