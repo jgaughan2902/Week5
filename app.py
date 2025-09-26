@@ -1,5 +1,4 @@
 import streamlit as st
-
 from apputil import *
 
 # Load Titanic dataset
@@ -14,6 +13,8 @@ st.write(
 # Generate and display the figure
 fig1 = visualize_demographic()
 st.plotly_chart(fig1, use_container_width=True)
+
+
 
 st.write(
 '''
