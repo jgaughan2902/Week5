@@ -132,7 +132,21 @@ def family_groups():
 
 # Section 4
 def last_names():
+     '''
+    Function to extract the last
+    names of each passenger.
+
+    Parameters:
+    No input parameters.
+
+    Return value:
+    A pandas series with last name
+    count as the value and the last 
+    name as the index.
+    '''
+    # Use string split to extract the last names.
     last_names = df_titanic['Name'].str.split(',').str[0]
+
     return last_names.value_counts()
 
 # Section 5
